@@ -7,6 +7,9 @@ from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Dense
 import statistics as s
 
+Patient = input("Enter Patient Name")
+inputNum = float(input("enter period of breath function"));
+inputNum2= float(input("enter difference between max and min"))
 df = pd.read_csv("ventilator.csv")
 
 X = df[['period']].values
@@ -23,11 +26,16 @@ model.add(Dense(2,activation = 'tanh'))
 model.add(Dense(1))
 model.compile(optimizer= 'rmsprop', loss = 'mse')
 model.fit(x=X_train, y =y_train,epochs=250)
-kana = np.e**float(model.predict([2]))#this is where input is. 
+
+kana = np.e**float(model.predict([inputNum]))
 donovan = s.mean(df[['oxigen_per_lit']].values.reshape(1432,))
-isWonderful= s.stdev(df[['oxigen_per_lit']].values.reshape(1432,)) #love u kanji :)
-zScore= (kana - donovan)/isWonderful
-if(zScore<(-1.65)):
-    print("Ventilator needed")
+isWonderful = s.stdev(df[['oxigen_per_lit']].values.reshape(1432,))
+andShe = s.mean(df[['peaks_diff']].values.reshape(1432,))
+shouldKnowThat = s.stdev(df[['peaks_diff']].values.reshape(1432,))
+zScore1= (kana - donovan)/isWonderful
+zScore2 = (inputNum-andShe)/shouldKnowThat
+
+if(zScore1<(-1.65) or (zScore2<(-1.65))):
+    print("Ventilator necessary for " + Patient)
 else:
-    print("U Good Fam")
+    print("No ventilation necessary")
