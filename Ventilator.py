@@ -31,9 +31,9 @@ k = np.e**float(model.predict([inputNum]))
 d = s.mean(df[['oxigen_per_lit']].values.reshape(1432,))
 i = s.stdev(df[['oxigen_per_lit']].values.reshape(1432,))
 a = s.mean(df[['peaks_diff']].values.reshape(1432,))
-s = s.stdev(df[['peaks_diff']].values.reshape(1432,))
+y = s.stdev(df[['peaks_diff']].values.reshape(1432,))
 zScore1= (k - d)/i
-zScore2 = (inputNum-a)/s
+zScore2 = (inputNum-a)/y
 
 if(zScore1<(-1.65) or (zScore2<(-1.65))):
     print("Ventilator necessary for " + Patient)
