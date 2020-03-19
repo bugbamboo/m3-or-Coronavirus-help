@@ -27,13 +27,13 @@ model.add(Dense(1))
 model.compile(optimizer= 'rmsprop', loss = 'mse')
 model.fit(x=X_train, y =y_train,epochs=250)
 
-kana = np.e**float(model.predict([inputNum]))
-donovan = s.mean(df[['oxigen_per_lit']].values.reshape(1432,))
-isWonderful = s.stdev(df[['oxigen_per_lit']].values.reshape(1432,))
-andShe = s.mean(df[['peaks_diff']].values.reshape(1432,))
-shouldKnowThat = s.stdev(df[['peaks_diff']].values.reshape(1432,))
-zScore1= (kana - donovan)/isWonderful
-zScore2 = (inputNum-andShe)/shouldKnowThat
+k = np.e**float(model.predict([inputNum]))
+d = s.mean(df[['oxigen_per_lit']].values.reshape(1432,))
+il = s.stdev(df[['oxigen_per_lit']].values.reshape(1432,))
+a = s.mean(df[['peaks_diff']].values.reshape(1432,))
+s = s.stdev(df[['peaks_diff']].values.reshape(1432,))
+zScore1= (k - d)/i
+zScore2 = (inputNum-a)/s
 
 if(zScore1<(-1.65) or (zScore2<(-1.65))):
     print("Ventilator necessary for " + Patient)
