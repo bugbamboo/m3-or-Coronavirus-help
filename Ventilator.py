@@ -29,7 +29,7 @@ model.fit(x=X_train, y =y_train,epochs=250)
 
 k = np.e**float(model.predict([inputNum]))
 d = s.mean(df[['oxigen_per_lit']].values.reshape(1432,))
-il = s.stdev(df[['oxigen_per_lit']].values.reshape(1432,))
+i = s.stdev(df[['oxigen_per_lit']].values.reshape(1432,))
 a = s.mean(df[['peaks_diff']].values.reshape(1432,))
 s = s.stdev(df[['peaks_diff']].values.reshape(1432,))
 zScore1= (k - d)/i
